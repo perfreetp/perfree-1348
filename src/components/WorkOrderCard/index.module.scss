@@ -1,0 +1,181 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.99);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+  gap: $spacing-md;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: $spacing-sm;
+}
+
+.typeBadge {
+  background: $color-primary-gradient;
+  padding: 4rpx 14rpx;
+  border-radius: $radius-xs;
+  flex-shrink: 0;
+}
+
+.typeText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+  font-weight: $font-weight-medium;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.tags {
+  display: flex;
+  gap: $spacing-xs;
+  flex-shrink: 0;
+}
+
+.facility {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.facilityLabel {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.facilityValue {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.imageRow {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.thumb {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.descWrap {
+  flex: 1;
+}
+
+.description {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  line-height: 1.6;
+  @include text-ellipsis-multi(3);
+}
+
+.descriptionNoImg {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  line-height: 1.6;
+  @include text-ellipsis-multi(2);
+  margin-bottom: $spacing-md;
+}
+
+.metaRow {
+  display: flex;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-md;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.metaIcon {
+  font-size: $font-size-sm;
+}
+
+.metaText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+
+  &.metaAlert {
+    color: $color-error;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.progressRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.progressTag {
+  background-color: $color-bg-hover;
+  padding: 6rpx 16rpx;
+  border-radius: $radius-xs;
+}
+
+.progressTagText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $spacing-md;
+  border-top: 1rpx solid $color-divider;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: $spacing-md;
+}
+
+.locationIcon {
+  font-size: $font-size-sm;
+  margin-right: 6rpx;
+}
+
+.locationText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  @include text-ellipsis;
+}
+
+.createdAt {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  flex-shrink: 0;
+}

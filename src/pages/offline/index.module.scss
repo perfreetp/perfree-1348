@@ -1,0 +1,483 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $bg-page;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: linear-gradient(135deg, #5C6BC0 0%, #7E57C2 100%);
+  padding: $spacing-lg $page-padding $spacing-md;
+  color: white;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: $radius-round;
+}
+
+.statusDot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: $radius-round;
+
+  &Online {
+    background: #4CAF50;
+    box-shadow: 0 0 8rpx rgba(76, 175, 80, 0.8);
+  }
+
+  &Offline {
+    background: #FFC107;
+  }
+}
+
+.statusText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.timeText {
+  font-size: $font-size-xs;
+  opacity: 0.9;
+}
+
+.summaryRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: $radius-md;
+  padding: $spacing-md 0;
+  margin-bottom: $spacing-md;
+}
+
+.summaryItem {
+  text-align: center;
+}
+
+.summaryVal {
+  display: block;
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  margin-bottom: 4rpx;
+}
+
+.summaryLbl {
+  font-size: 20rpx;
+  opacity: 0.9;
+}
+
+.tabBar {
+  display: flex;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: $radius-round;
+  padding: 6rpx;
+}
+
+.tabItem {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14rpx 0;
+  border-radius: $radius-round;
+  gap: 4rpx;
+  transition: all $transition-base;
+
+  &Active {
+    background: white;
+    box-shadow: $shadow-card;
+  }
+}
+
+.tabIcon {
+  font-size: 28rpx;
+}
+
+.tabText {
+  font-size: 22rpx;
+  opacity: 0.95;
+
+  .tabItemActive & {
+    color: #5C6BC0;
+    font-weight: $font-weight-semibold;
+    opacity: 1;
+  }
+}
+
+.tabBadge {
+  position: absolute;
+  top: 4rpx;
+  right: 50%;
+  transform: translateX(48rpx);
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: #EF5350;
+  color: white;
+  font-size: 20rpx;
+  font-weight: $font-weight-bold;
+  border-radius: $radius-round;
+  padding: 0 8rpx;
+}
+
+.content {
+  flex: 1;
+  padding: $spacing-md $page-padding 0;
+  margin-top: -$spacing-sm;
+}
+
+.actionBar {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.actionBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  background: white;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: all $transition-fast;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.actionBtnIcon {
+  font-size: 32rpx;
+}
+
+.actionBtnText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+}
+
+.dateGroup {
+  margin-bottom: $spacing-md;
+}
+
+.dateHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-xs;
+  margin-bottom: $spacing-sm;
+}
+
+.dateLabel {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+}
+
+.queueList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.queueCard {
+  background: white;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.queueHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-sm;
+}
+
+.queueTypeBadge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 6rpx 16rpx;
+  border-radius: $radius-round;
+}
+
+.queueTypeIcon {
+  font-size: 24rpx;
+}
+
+.queueTypeText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.queueBody {
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1rpx dashed $border-light;
+}
+
+.queueTime {
+  display: block;
+  font-size: $font-size-xs;
+  color: $text-secondary;
+  margin-bottom: 4rpx;
+}
+
+.queueError {
+  display: block;
+  font-size: $font-size-xs;
+  color: $danger-color;
+}
+
+.queueActions {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+}
+
+.queueBtn {
+  padding: 12rpx 28rpx;
+  border-radius: $radius-round;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+
+  &Primary {
+    background: $primary-color;
+    color: white;
+  }
+
+  &Danger {
+    background: rgba(239, 83, 80, 0.1);
+    color: $danger-color;
+  }
+
+  &Secondary {
+    background: #f0f2f5;
+    color: $text-secondary;
+  }
+}
+
+.spaceTip {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.spaceTipIcon {
+  font-size: 44rpx;
+  flex-shrink: 0;
+}
+
+.spaceTipTitle {
+  display: block;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: 4rpx;
+}
+
+.spaceTipDesc {
+  font-size: $font-size-xs;
+  color: $text-secondary;
+}
+
+.packageList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin: $spacing-sm 0 $spacing-md;
+}
+
+.packageCard {
+  background: white;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.pkgHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.pkgIconWrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: $radius-md;
+  background: rgba(30, 136, 229, 0.1);
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.pkgIcon {
+  font-size: 36rpx;
+}
+
+.pkgInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.pkgName {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: 4rpx;
+  @include text-ellipsis;
+}
+
+.pkgMeta {
+  font-size: 22rpx;
+  color: $text-secondary;
+}
+
+.pkgActions {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+  border-top: 1rpx solid $border-light;
+  padding-top: $spacing-sm;
+}
+
+.pkgBtn {
+  padding: 12rpx 28rpx;
+  border-radius: $radius-round;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-align: center;
+
+  &Primary {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: white;
+    min-width: 160rpx;
+  }
+
+  &Secondary {
+    background: rgba(239, 83, 80, 0.1);
+    color: $danger-color;
+  }
+
+  &Outline {
+    background: #f0f2f5;
+    color: $text-secondary;
+  }
+}
+
+.guideSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.guideCard {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.guideIcon {
+  font-size: 64rpx;
+  margin-bottom: $spacing-sm;
+}
+
+.guideTitle {
+  display: block;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.guideSteps {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.guideStep {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-start;
+}
+
+.stepNum {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: $radius-round;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  color: white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.stepText {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $text-primary;
+  line-height: $line-height-normal;
+  padding-top: 8rpx;
+}
+
+.tipCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-xs;
+}
+
+.tipCard {
+  background: white;
+  border-radius: $radius-md;
+  padding: $spacing-md $spacing-xs;
+  text-align: center;
+  box-shadow: $shadow-card;
+}
+
+.tipIcon {
+  display: block;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.tipTitle {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: 4rpx;
+}
+
+.tipDesc {
+  font-size: 20rpx;
+  color: $text-secondary;
+  line-height: $line-height-tight;
+}

@@ -1,0 +1,655 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $bg-page;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll {
+  flex: 1;
+}
+
+.header {
+  padding: $spacing-lg $page-padding $spacing-xl;
+  color: white;
+}
+
+.headerTop {
+  margin-bottom: $spacing-md;
+}
+
+.tagRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.typeBadge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: $radius-round;
+}
+
+.typeIcon {
+  font-size: 28rpx;
+}
+
+.typeText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.title {
+  display: block;
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-sm;
+}
+
+.location {
+  font-size: $font-size-sm;
+  opacity: 0.95;
+}
+
+.content {
+  padding: 0 $page-padding;
+  margin-top: -$spacing-md;
+}
+
+.statsRow {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.statChip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  background: #f8fafc;
+  border-radius: $radius-md;
+  padding: $spacing-sm;
+
+  .statIcon {
+    font-size: 36rpx;
+    flex-shrink: 0;
+  }
+
+  .statVal {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    @include text-ellipsis;
+    max-width: 140rpx;
+  }
+
+  .statLbl {
+    display: block;
+    font-size: 20rpx;
+    color: $text-secondary;
+  }
+}
+
+.tabBar {
+  background: white;
+  border-radius: $radius-md;
+  padding: 6rpx;
+  display: flex;
+  gap: 6rpx;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.tabItem {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 8rpx;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &Active {
+    background: $primary-color;
+    box-shadow: $shadow-card;
+  }
+}
+
+.tabText {
+  font-size: 22rpx;
+  color: $text-secondary;
+
+  &Active {
+    color: white;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.card {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.addBtn {
+  font-size: 22rpx;
+  color: $primary-color;
+  font-weight: $font-weight-medium;
+  padding: 8rpx 20rpx;
+  background: rgba(30, 136, 229, 0.1);
+  border-radius: $radius-round;
+  flex-shrink: 0;
+}
+
+.infoList {
+  margin-top: $spacing-sm;
+  background: #f8fafc;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.infoRow {
+  display: flex;
+  padding: $spacing-sm $spacing-md;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.04);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.infoLabel {
+  width: 160rpx;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  flex-shrink: 0;
+}
+
+.infoValue {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $text-primary;
+  font-weight: $font-weight-medium;
+  @include text-ellipsis;
+}
+
+.linkRow {
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  background: rgba(30, 136, 229, 0.08);
+  border-radius: $radius-md;
+  color: $primary-color;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.descBox {
+  margin-top: $spacing-sm;
+  padding: $spacing-md;
+  background: #f8fafc;
+  border-radius: $radius-md;
+  border-left: 6rpx solid $primary-color;
+}
+
+.descText {
+  font-size: $font-size-sm;
+  color: $text-primary;
+  line-height: $line-height-loose;
+}
+
+.imgGrid {
+  margin-top: $spacing-sm;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-xs;
+}
+
+.img {
+  width: 100%;
+  padding-top: 100%;
+  border-radius: $radius-md;
+  position: relative;
+  overflow: hidden;
+}
+
+.tableWrap {
+  margin-top: $spacing-sm;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1rpx solid $border-light;
+}
+
+.tableHead {
+  display: flex;
+  background: #f0f2f5;
+  padding: $spacing-xs $spacing-sm;
+
+  Text {
+    font-size: 20rpx;
+    color: $text-secondary;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+  }
+}
+
+.tableRow {
+  display: flex;
+  padding: $spacing-sm;
+  border-top: 1rpx solid $border-light;
+  align-items: center;
+}
+
+.tableCell {
+  font-size: 22rpx;
+  color: $text-primary;
+  text-align: center;
+  @include text-ellipsis;
+}
+
+.valveList {
+  margin-top: $spacing-sm;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.valveCard {
+  background: #f8fafc;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  border-left: 6rpx solid $primary-color;
+}
+
+.valveHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-xs;
+}
+
+.opBadge {
+  font-size: 22rpx;
+  font-weight: $font-weight-semibold;
+  padding: 6rpx 16rpx;
+  border-radius: $radius-round;
+
+  &Close {
+    background: rgba(239, 83, 80, 0.1);
+    color: $danger-color;
+  }
+
+  &Open {
+    background: rgba(76, 175, 80, 0.1);
+    color: $success-color;
+  }
+}
+
+.valveTime {
+  font-size: 20rpx;
+  color: $text-secondary;
+}
+
+.valveName {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin: 6rpx 0;
+}
+
+.valveMeta {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-bottom: 4rpx;
+
+  .meta {
+    font-size: 22rpx;
+    color: $text-secondary;
+  }
+}
+
+.valveRemark {
+  display: block;
+  font-size: 22rpx;
+  color: $text-secondary;
+  padding-top: 4rpx;
+  border-top: 1rpx dashed $border-light;
+  margin-top: 6rpx;
+}
+
+.timeline {
+  margin-top: $spacing-md;
+  padding-left: 20rpx;
+}
+
+.tlItem {
+  display: flex;
+  gap: $spacing-sm;
+  padding-bottom: $spacing-md;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.tlLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 32rpx;
+  flex-shrink: 0;
+}
+
+.tlDot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: $radius-round;
+  background: #bbb;
+  flex-shrink: 0;
+
+  &First {
+    background: $primary-color;
+    box-shadow: 0 0 0 6rpx rgba(30, 136, 229, 0.2);
+  }
+}
+
+.tlLine {
+  width: 3rpx;
+  flex: 1;
+  background: #e0e0e0;
+  margin-top: 8rpx;
+}
+
+.tlContent {
+  flex: 1;
+  background: #f8fafc;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+}
+
+.tlAction {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: 4rpx;
+}
+
+.tlOperator,
+.tlTime {
+  display: block;
+  font-size: 22rpx;
+  color: $text-secondary;
+  margin-top: 2rpx;
+}
+
+.tlRemark {
+  display: block;
+  font-size: 22rpx;
+  color: $text-secondary;
+  padding-top: 6rpx;
+  margin-top: 6rpx;
+  border-top: 1rpx dashed $border-light;
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $spacing-md $page-padding calc(env(safe-area-inset-bottom) + #{$spacing-md});
+  background: white;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: $spacing-md;
+}
+
+.bigBtn {
+  flex: 1;
+  height: 96rpx;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  color: white;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-lg;
+  @include flex-center;
+  box-shadow: 0 8rpx 24rpx rgba(30, 136, 229, 0.3);
+}
+
+.halfBtn,
+.thirdBtn {
+  flex: 1;
+  height: 96rpx;
+  background: #f0f2f5;
+  color: $text-primary;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-lg;
+  @include flex-center;
+
+  &.primaryBtn {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: white;
+    box-shadow: 0 8rpx 24rpx rgba(30, 136, 229, 0.3);
+  }
+}
+
+.modalMask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+}
+
+.modalSheet {
+  width: 100%;
+  max-height: 88vh;
+  background: white;
+  border-radius: $radius-xl $radius-xl 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheetHandle {
+  width: 80rpx;
+  height: 8rpx;
+  background: #e0e0e0;
+  border-radius: $radius-round;
+  margin: $spacing-sm auto 0;
+  flex-shrink: 0;
+}
+
+.sheetTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+  padding: $spacing-md;
+  border-bottom: 1rpx solid $border-light;
+  flex-shrink: 0;
+}
+
+.sheetScroll {
+  flex: 1;
+  padding: $spacing-md $page-padding;
+}
+
+.formGroup {
+  margin-bottom: $spacing-md;
+}
+
+.formLabel {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  border: 1rpx solid $border-light;
+  border-radius: $radius-md;
+  background: #f8fafc;
+  transition: all $transition-fast;
+
+  &:focus {
+    border-color: $primary-color;
+    background: white;
+    outline: none;
+  }
+}
+
+.formTextarea {
+  min-height: 160rpx;
+  resize: vertical;
+}
+
+.formRow {
+  display: flex;
+}
+
+.segmented {
+  display: flex;
+  background: #f0f2f5;
+  border-radius: $radius-md;
+  padding: 6rpx;
+  gap: 6rpx;
+}
+
+.segItem {
+  flex: 1;
+  text-align: center;
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  transition: all $transition-fast;
+
+  &Active {
+    background: white;
+    color: $primary-color;
+    font-weight: $font-weight-semibold;
+    box-shadow: $shadow-card;
+  }
+}
+
+.slider {
+  width: 100%;
+  margin-top: $spacing-xs;
+}
+
+.partRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+  padding: $spacing-md;
+  background: #f8fafc;
+  border-radius: $radius-md;
+}
+
+.partIdx {
+  width: 48rpx;
+  height: 48rpx;
+  background: $primary-color;
+  color: white;
+  border-radius: $radius-round;
+  @include flex-center;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+}
+
+.partForm {
+  flex: 1;
+  min-width: 0;
+}
+
+.delRow {
+  width: 64rpx;
+  height: 64rpx;
+  background: rgba(239, 83, 80, 0.1);
+  color: $danger-color;
+  border-radius: $radius-md;
+  @include flex-center;
+  font-size: 32rpx;
+  flex-shrink: 0;
+  margin-top: $spacing-lg;
+}
+
+.addRowBtn {
+  padding: $spacing-md;
+  background: rgba(30, 136, 229, 0.08);
+  border: 2rpx dashed rgba(30, 136, 229, 0.3);
+  border-radius: $radius-md;
+  color: $primary-color;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  margin-bottom: $spacing-md;
+}
+
+.sheetActions {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md $page-padding calc(env(safe-area-inset-bottom) + #{$spacing-md});
+  border-top: 1rpx solid $border-light;
+  flex-shrink: 0;
+}
+
+.sheetCancel,
+.sheetConfirm {
+  flex: 1;
+  height: 88rpx;
+  border-radius: $radius-lg;
+  @include flex-center;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.sheetCancel {
+  background: #f0f2f5;
+  color: $text-secondary;
+}
+
+.sheetConfirm {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  color: white;
+  box-shadow: 0 8rpx 24rpx rgba(30, 136, 229, 0.3);
+}

@@ -1,0 +1,48 @@
+@use '@/styles/variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg 0 $spacing-md;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: $spacing-sm;
+}
+
+.indicator {
+  width: 6rpx;
+  height: 28rpx;
+  background: $color-primary-gradient;
+  border-radius: $radius-xs;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  margin-left: $spacing-sm;
+}
+
+.extra {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1rpx;
+  background-color: $color-divider;
+}

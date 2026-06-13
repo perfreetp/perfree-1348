@@ -1,0 +1,118 @@
+@use '@/styles/variables.scss' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  white-space: nowrap;
+}
+
+.sizeSm {
+  padding: 4rpx 12rpx;
+}
+
+.sizeMd {
+  padding: 8rpx 20rpx;
+}
+
+.text {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+}
+
+.typeDefault {
+  background-color: $color-bg-hover;
+  .text { color: $color-text-tertiary; }
+}
+
+.typePrimary {
+  background-color: rgba(30, 136, 229, 0.1);
+  .text { color: $color-primary; }
+}
+
+.typeSuccess {
+  background-color: rgba(38, 166, 154, 0.1);
+  .text { color: $color-success; }
+}
+
+.typeWarning {
+  background-color: rgba(255, 152, 0, 0.1);
+  .text { color: $color-warning; }
+}
+
+.typeError {
+  background-color: rgba(239, 83, 80, 0.1);
+  .text { color: $color-error; }
+}
+
+.typeDanger {
+  background-color: rgba(239, 83, 80, 0.12);
+  .text { color: $color-error; }
+}
+
+.typeInfo {
+  background-color: rgba(30, 136, 229, 0.1);
+  .text { color: $color-info; }
+}
+
+.typeMinor {
+  background-color: rgba(38, 166, 154, 0.1);
+  .text { color: $hazard-level-minor; }
+}
+
+.typeModerate {
+  background-color: rgba(255, 152, 0, 0.1);
+  .text { color: $hazard-level-moderate; }
+}
+
+.typeMajor {
+  background-color: rgba(239, 83, 80, 0.1);
+  .text { color: $hazard-level-major; }
+}
+
+.typeSevere {
+  background-color: rgba(211, 47, 47, 0.12);
+  .text { color: $hazard-level-severe; }
+}
+
+.typeTodo {
+  background-color: rgba(134, 144, 156, 0.1);
+  .text { color: $task-status-todo; }
+}
+
+.typeDoing {
+  background-color: rgba(30, 136, 229, 0.1);
+  .text { color: $task-status-doing; }
+}
+
+.typeDone {
+  background-color: rgba(38, 166, 154, 0.1);
+  .text { color: $task-status-done; }
+}
+
+.typeOverdue {
+  background-color: rgba(239, 83, 80, 0.1);
+  .text { color: $task-status-overdue; }
+}
+
+.typePending {
+  background-color: rgba(255, 152, 0, 0.1);
+  .text { color: $order-status-pending; }
+}
+
+.typeProcessing {
+  background-color: rgba(30, 136, 229, 0.1);
+  .text { color: $order-status-processing; }
+}
+
+.typeCompleted {
+  background-color: rgba(38, 166, 154, 0.1);
+  .text { color: $order-status-completed; }
+}
+
+.typeClosed {
+  background-color: rgba(134, 144, 156, 0.1);
+  .text { color: $order-status-closed; }
+}

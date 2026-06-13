@@ -1,0 +1,53 @@
+// ============================================
+// 供水管网巡检 - 主题配色变量
+// ============================================
+
+// 品牌主题色：水务蓝
+$color-primary: #1E88E5;
+$color-primary-light: #42A5F5;
+$color-primary-dark: #1565C0;
+$color-primary-gradient: linear-gradient(135deg, #1E88E5 0%, #42A5F5 100%);
+
+// 功能色
+$color-success: #26A69A;
+$color-success-light: #80CBC4;
+$color-warning: #FF9800;
+$color-warning-light: #FFB74D;
+$color-error: #EF5350;
+$color-error-light: #EF9A9A;
+$color-info: #1E88E5;
+
+// 隐患等级色
+$hazard-level-minor: #26A69A;
+$hazard-level-moderate: #FF9800;
+$hazard-level-major: #EF5350;
+$hazard-level-severe: #D32F2F;
+
+// 任务状态色
+$task-status-todo: #86909C;
+$task-status-doing: #1E88E5;
+$task-status-done: #26A69A;
+$task-status-overdue: #EF5350;
+
+// 工单状态色
+$order-status-pending: #FF9800;
+$order-status-processing: #1E88E5;
+$order-status-completed: #26A69A;
+$order-status-closed: #86909C;
+
+// 背景色
+$color-bg-page: #F4F7FA;
+$color-bg-card: #FFFFFF;
+$color-bg-hover: #EEF2F5;
+$color-bg-badge: rgba(30, 136, 229, 0.1);
+
+// 文本色
+$color-text-primary: #1D2129;
+$color-text-secondary: #4E5969;
+$color-text-tertiary: #86909C;
+$color-text-disabled: #C9CDD4;
+$color-text-white: #FFFFFF;
+
+// 边框色
+$color-border: #E5E6EB;
+$color-divider: #F2F3F5;

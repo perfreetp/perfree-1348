@@ -1,0 +1,107 @@
+import type { InspectionTask, TaskStatus } from '@/types';
+
+const makePoints = (prefix: string, count: number, startIdx = 0) =>
+  Array.from({ length: count }, (_, i) => ({
+    id: `${prefix}-pt-${startIdx + i}`,
+    name: `${['阀门井', '消火栓', '排气阀', '流量计'][i % 4]} #${String(startIdx + i + 1).padStart(3, '0')}`,
+    address: `${['人民路', '中山路', '解放路', '建设路', '长江路'][i % 5]}${100 + startIdx + i}号`,
+    lat: 31.23 + (i * 0.002),
+    lng: 121.47 + (i * 0.003),
+    type: (['valve', 'hydrant', 'valve', 'hydrant'] as const)[i % 4],
+    checked: i < Math.floor(count / 2),
+    checkInTime: i < Math.floor(count / 2) ? `0${8 + i}:${String(15 + i * 7).padStart(2, '0')}` : undefined,
+    order: i + 1
+  }));
+
+export const mockTasks: InspectionTask[] = [
+  {
+    id: 'task-001',
+    title: '人民路主干管日常巡检',
+    planId: 'plan-2026-0613-01',
+    routeName: '人民路A线',
+    status: 'doing' as TaskStatus,
+    priority: 'high',
+    startTime: '08:00',
+    endTime: '12:00',
+    deadline: '今日 12:00',
+    totalPoints: 6,
+    checkedPoints: 3,
+    points: makePoints('task-001', 6),
+    assignee: '张建国',
+    description: '人民路主干管沿线阀门井及消火栓日常巡检，包含漏水噪声检测和压力读数记录',
+    isOverdue: false,
+    createdAt: '2026-06-12 17:30'
+  },
+  {
+    id: 'task-002',
+    title: '工业园区专项消火栓检查',
+    planId: 'plan-2026-0613-02',
+    routeName: '工业园环线',
+    status: 'todo' as TaskStatus,
+    priority: 'medium',
+    startTime: '13:30',
+    endTime: '17:30',
+    deadline: '今日 17:30',
+    totalPoints: 8,
+    checkedPoints: 0,
+    points: makePoints('task-002', 8, 6),
+    assignee: '张建国',
+    description: '工业园区内所有消火栓压力测试和可用性检查，重点检查消防通道附近设施',
+    isOverdue: false,
+    createdAt: '2026-06-12 17:35'
+  },
+  {
+    id: 'task-003',
+    title: '长江路老旧小区重点巡检',
+    planId: 'plan-2026-0613-03',
+    routeName: '长江路B线',
+    status: 'overdue' as TaskStatus,
+    priority: 'high',
+    startTime: '06:00',
+    endTime: '09:00',
+    deadline: '今日 09:00',
+    totalPoints: 4,
+    checkedPoints: 2,
+    points: makePoints('task-003', 4, 14),
+    assignee: '张建国',
+    description: '老旧小区供水管网重点检查，注意记录漏水点和管道锈蚀情况',
+    isOverdue: true,
+    createdAt: '2026-06-12 17:40'
+  },
+  {
+    id: 'task-004',
+    title: '新建路段设施竣工验收',
+    planId: 'plan-2026-0613-04',
+    routeName: '科技大道新建段',
+    status: 'todo' as TaskStatus,
+    priority: 'low',
+    startTime: '15:00',
+    endTime: '18:00',
+    deadline: '今日 18:00',
+    totalPoints: 5,
+    checkedPoints: 0,
+    points: makePoints('task-004', 5, 18),
+    assignee: '张建国',
+    description: '配合工程部对科技大道新建供水管网设施进行竣工验收巡检',
+    isOverdue: false,
+    createdAt: '2026-06-13 08:20'
+  },
+  {
+    id: 'task-005',
+    title: '夜间检漏计划（夜班）',
+    planId: 'plan-2026-0613-05',
+    routeName: '主城区夜巡线',
+    status: 'todo' as TaskStatus,
+    priority: 'medium',
+    startTime: '22:00',
+    endTime: '次日 02:00',
+    deadline: '次日 02:00',
+    totalPoints: 7,
+    checkedPoints: 0,
+    points: makePoints('task-005', 7, 23),
+    assignee: '张建国',
+    description: '夜间用水低峰期进行供水管网漏水噪声检测，重点关注商业中心区域',
+    isOverdue: false,
+    createdAt: '2026-06-13 09:00'
+  }
+];

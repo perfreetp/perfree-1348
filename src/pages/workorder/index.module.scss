@@ -1,0 +1,264 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background-color: $color-bg-page;
+  padding-bottom: 120rpx;
+}
+
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-sm;
+  margin: $spacing-md $page-padding;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.statItem {
+  text-align: center;
+  padding: $spacing-sm 0;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+
+  &.active {
+    background-color: rgba(30,136,229,0.08);
+  }
+}
+
+.statNumber {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  margin-bottom: 4rpx;
+  display: block;
+  color: $color-text-primary;
+
+  .pending & { color: $order-status-pending; }
+  .processing & { color: $order-status-processing; }
+  .completed & { color: $order-status-completed; }
+  .overdue & { color: $color-error; }
+  .all & { color: $color-text-primary; }
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.actionHeader {
+  margin: 0 $page-padding $spacing-md;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.actionBtn {
+  @include button-reset;
+  flex: 1;
+  height: $button-height-md;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+
+  &.primary {
+    background: $color-primary-gradient;
+    color: $color-text-white;
+  }
+  &.warning {
+    background: linear-gradient(135deg, $color-warning, $color-warning-light);
+    color: $color-text-white;
+  }
+
+  &:active { opacity: 0.9; transform: scale(0.98); }
+}
+
+.filterRow {
+  display: flex;
+  gap: $spacing-sm;
+  padding: 0 $page-padding $spacing-md;
+  overflow-x: auto;
+}
+
+.filterChip {
+  padding: $spacing-sm $spacing-lg;
+  background: $color-bg-card;
+  border-radius: $radius-button;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  box-shadow: $shadow-card;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all $transition-base;
+
+  &.active {
+    background: $color-primary-gradient;
+    color: $color-text-white;
+    box-shadow: 0 4rpx 12rpx rgba(30,136,229,0.25);
+  }
+}
+
+.listArea {
+  padding: 0 $page-padding;
+}
+
+.recordModal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.modalContent {
+  width: 100%;
+  background: $color-bg-card;
+  border-radius: $radius-xl $radius-xl 0 0;
+  padding: $spacing-xl $page-padding;
+  padding-bottom: calc(#{$spacing-xl} + env(safe-area-inset-bottom));
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.modalTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.modalClose {
+  width: 56rpx;
+  height: 56rpx;
+  @include flex-center;
+  border-radius: $radius-round;
+  background-color: $color-bg-hover;
+  font-size: $font-size-lg;
+  color: $color-text-tertiary;
+}
+
+.modalSection {
+  margin-bottom: $spacing-lg;
+}
+
+.modalLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.operationSelector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.operationOpt {
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 2rpx solid $color-border;
+  text-align: center;
+  transition: all $transition-base;
+
+  &.selected {
+    border-color: $color-primary;
+    background-color: rgba(30,136,229,0.06);
+  }
+
+  &.close.selected {
+    border-color: $color-error;
+    background-color: rgba(239,83,80,0.06);
+  }
+}
+
+.operationIcon {
+  font-size: 48rpx;
+  margin-bottom: $spacing-xs;
+  display: block;
+}
+
+.operationName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+
+  .selected & { color: $color-primary; }
+  .close.selected & { color: $color-error; }
+}
+
+.partRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  align-items: center;
+}
+
+.partInput {
+  padding: $spacing-sm $spacing-md;
+  background-color: $color-bg-hover;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+}
+
+.partAddBtn {
+  padding: $spacing-sm;
+  background-color: rgba(30,136,229,0.08);
+  border-radius: $radius-sm;
+  text-align: center;
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  &:active { opacity: 0.8; }
+}
+
+.partDelBtn {
+  padding: $spacing-sm;
+  color: $color-error;
+  font-size: $font-size-lg;
+}
+
+.submitArea {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+.cancelBtn {
+  @include button-reset;
+  flex: 1;
+  height: $button-height-lg;
+  border-radius: $radius-button;
+  background-color: $color-bg-hover;
+  color: $color-text-secondary;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+
+  &:active { opacity: 0.8; }
+}
+
+.confirmBtn {
+  @include button-reset;
+  flex: 2;
+  height: $button-height-lg;
+  border-radius: $radius-button;
+  background: $color-primary-gradient;
+  color: $color-text-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+
+  &:active { opacity: 0.9; transform: scale(0.98); }
+}

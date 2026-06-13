@@ -1,0 +1,96 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rpx;
+    background: currentColor;
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+.primary {
+  &::before { background-color: $color-primary; }
+  .value { color: $color-primary; }
+}
+
+.success {
+  &::before { background-color: $color-success; }
+  .value { color: $color-success; }
+}
+
+.warning {
+  &::before { background-color: $color-warning; }
+  .value { color: $color-warning; }
+}
+
+.error {
+  &::before { background-color: $color-error; }
+  .value { color: $color-error; }
+}
+
+.top {
+  margin-bottom: $spacing-sm;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+}
+
+.value {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+}
+
+.unit {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  margin-left: 4rpx;
+}
+
+.trend {
+  font-size: $font-size-xs;
+  padding: 4rpx 10rpx;
+  border-radius: $radius-xs;
+
+  &Up {
+    background-color: rgba(239, 83, 80, 0.1);
+    color: $color-error;
+  }
+
+  &Down {
+    background-color: rgba(38, 166, 154, 0.1);
+    color: $color-success;
+  }
+}

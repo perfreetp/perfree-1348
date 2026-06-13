@@ -1,0 +1,245 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(30, 136, 229, 0.08) 0%, $color-bg-page 400rpx);
+  padding-bottom: 160rpx;
+}
+
+.header {
+  padding: $spacing-lg $page-padding;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: $radius-round;
+  border: 3rpx solid $color-bg-card;
+  box-shadow: $shadow-card;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.greeting {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.subInfo {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.onlineBadge {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 6rpx 14rpx;
+  background-color: rgba(38, 166, 154, 0.12);
+  border-radius: $radius-round;
+}
+
+.onlineDot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: $radius-round;
+  background-color: $color-success;
+}
+
+.onlineText {
+  font-size: $font-size-xs;
+  color: $color-success;
+  font-weight: $font-weight-medium;
+}
+
+.syncBadge {
+  display: flex;
+  align-items: center;
+  padding: 6rpx 14rpx;
+  background-color: $color-bg-card;
+  border-radius: $radius-round;
+  box-shadow: $shadow-card;
+  cursor: pointer;
+
+  &:active { opacity: 0.8; }
+}
+
+.syncText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+}
+
+.countBadge {
+  margin-left: 6rpx;
+  padding: 2rpx 10rpx;
+  background-color: $color-warning;
+  border-radius: $radius-round;
+}
+
+.countText {
+  font-size: 20rpx;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.content {
+  padding: 0 $page-padding;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.section {
+  margin-top: $spacing-xs;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md 0;
+}
+
+.filterTabs {
+  display: flex;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+  background-color: $color-bg-card;
+  padding: $spacing-xs;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+.filterTab {
+  flex: 1;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  text-align: center;
+  transition: all $transition-base;
+
+  &.active {
+    background: $color-primary-gradient;
+    box-shadow: 0 4rpx 12rpx rgba(30, 136, 229, 0.3);
+  }
+}
+
+.filterText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+
+  .active & {
+    color: $color-text-white;
+  }
+}
+
+.filterCount {
+  margin-left: 6rpx;
+  font-size: $font-size-xs;
+  opacity: 0.8;
+}
+
+.teamCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-top: $spacing-md;
+}
+
+.teamHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.teamTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.teamTitleText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.teamCount {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.teamAvatars {
+  display: flex;
+  align-items: center;
+}
+
+.moreBtn {
+  padding: 6rpx 14rpx;
+  border-radius: $radius-sm;
+  background-color: $color-bg-hover;
+
+  &:active { opacity: 0.8; }
+}
+
+.moreBtnText {
+  font-size: $font-size-xs;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.overdueAlert {
+  background: linear-gradient(135deg, rgba(239, 83, 80, 0.12) 0%, rgba(255, 152, 0, 0.1) 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  border: 1rpx solid rgba(239, 83, 80, 0.2);
+}
+
+.alertIcon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: $radius-round;
+  background: linear-gradient(135deg, $color-error 0%, $color-warning 100%);
+  @include flex-center;
+  font-size: 40rpx;
+  flex-shrink: 0;
+}
+
+.alertContent {
+  flex: 1;
+}
+
+.alertTitle {
+  font-size: $font-size-md;
+  color: $color-error;
+  font-weight: $font-weight-semibold;
+  margin-bottom: 6rpx;
+}
+
+.alertDesc {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}

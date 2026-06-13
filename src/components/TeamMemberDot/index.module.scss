@@ -1,0 +1,76 @@
+@use '@/styles/variables.scss' as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-md;
+  gap: $spacing-md;
+  transition: all $transition-base;
+
+  &:active {
+    background-color: $color-bg-hover;
+  }
+}
+
+.compactItem {
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.avatarWrap {
+  position: relative;
+  width: 72rpx;
+  height: 72rpx;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-round;
+  border: 2rpx solid $color-bg-card;
+}
+
+.statusDot {
+  position: absolute;
+  right: -2rpx;
+  bottom: -2rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: $radius-round;
+  border: 3rpx solid $color-bg-card;
+
+  &.online {
+    background-color: $color-success;
+  }
+
+  &.offline {
+    background-color: $color-text-disabled;
+  }
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.name {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.task {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  @include text-ellipsis;
+}
+
+.updateTime {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  flex-shrink: 0;
+}

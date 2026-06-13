@@ -1,0 +1,363 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $bg-page;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20rpx);
+}
+
+.header {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  padding: $spacing-lg $page-padding $spacing-xl;
+  color: white;
+
+  .headerTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: $spacing-lg;
+  }
+
+  .pageTitle {
+    display: block;
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: 6rpx;
+  }
+
+  .dateText {
+    display: block;
+    font-size: $font-size-sm;
+    opacity: 0.85;
+  }
+
+  .exportBtn {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 14rpx 24rpx;
+    border-radius: $radius-round;
+    gap: 8rpx;
+
+    .exportIcon {
+      font-size: 28rpx;
+    }
+
+    .exportText {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  .rangeTabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: $radius-round;
+    padding: 6rpx;
+  }
+
+  .rangeTab {
+    flex: 1;
+    text-align: center;
+    padding: 16rpx 0;
+    border-radius: $radius-round;
+    transition: all $transition-base;
+
+    &Active {
+      background: white;
+      box-shadow: $shadow-card;
+    }
+  }
+
+  .rangeTabText {
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.9);
+
+    &Active {
+      color: $primary-color;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+.content {
+  padding: $spacing-md $page-padding 0;
+  margin-top: -$spacing-xl;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.card {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.metricsList {
+  margin-top: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.metricItem {
+  .metricTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-sm;
+  }
+
+  .metricLabel {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+
+  .metricValueWrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4rpx;
+  }
+
+  .metricValue {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+  }
+
+  .metricUnit {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+
+  .progressBar {
+    height: 12rpx;
+    background: #f0f2f5;
+    border-radius: $radius-round;
+    overflow: hidden;
+  }
+
+  .progressFill {
+    height: 100%;
+    border-radius: $radius-round;
+    transition: width $transition-base;
+  }
+}
+
+.trendChart {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-md;
+}
+
+.trendBars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 220rpx;
+  padding: 0 $spacing-xs;
+}
+
+.trendBarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 8rpx;
+
+  .trendBarVal {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    font-weight: $font-weight-medium;
+  }
+
+  .trendBarOuter {
+    width: 40rpx;
+    height: 120rpx;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .trendBarInner {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(30, 136, 229, 0.3) 0%, $primary-color 100%);
+    border-radius: 8rpx 8rpx 4rpx 4rpx;
+    min-height: 8rpx;
+    transition: height $transition-base;
+
+    &Active {
+      background: linear-gradient(180deg, rgba(255, 152, 0, 0.4) 0%, $warning-color 100%);
+    }
+  }
+
+  .trendBarLabel {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+}
+
+.distribution {
+  margin-top: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.distItem {
+  .distRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-sm;
+  }
+
+  .distLabelWrap {
+    display: flex;
+    align-items: center;
+    gap: 10rpx;
+  }
+
+  .distDot {
+    width: 16rpx;
+    height: 16rpx;
+    border-radius: $radius-round;
+  }
+
+  .distLabel {
+    font-size: $font-size-sm;
+    color: $text-primary;
+  }
+
+  .distCount {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+
+  .distBar {
+    height: 14rpx;
+    background: #f0f2f5;
+    border-radius: $radius-round;
+    overflow: hidden;
+  }
+
+  .distBarFill {
+    height: 100%;
+    border-radius: $radius-round;
+    transition: width $transition-base;
+  }
+}
+
+.moreLink {
+  font-size: $font-size-xs;
+  color: $primary-color;
+}
+
+.taskList {
+  margin-top: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.taskRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  background: #f8fafc;
+  border-radius: $radius-md;
+
+  .taskInfo {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .taskTitle {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+    @include text-ellipsis;
+    margin-bottom: 6rpx;
+  }
+
+  .taskMeta {
+    display: block;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+}
+
+.summaryCard {
+  background: linear-gradient(135deg, #1E88E5 0%, #64B5F6 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  color: white;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+
+  .summaryTitle {
+    display: block;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
+  }
+
+  .summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: $radius-md;
+    padding: $spacing-md 0;
+    margin-bottom: $spacing-md;
+  }
+
+  .summaryItem {
+    text-align: center;
+  }
+
+  .summaryValue {
+    display: block;
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: 4rpx;
+  }
+
+  .summaryLabel {
+    font-size: 20rpx;
+    opacity: 0.85;
+  }
+
+  .summaryDivider {
+    width: 1rpx;
+    height: 60rpx;
+    background: rgba(255, 255, 255, 0.25);
+    justify-self: center;
+  }
+
+  .summaryFooter {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .rateBadge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10rpx 24rpx;
+    border-radius: $radius-round;
+  }
+
+  .rateText {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+}
