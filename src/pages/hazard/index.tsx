@@ -27,7 +27,7 @@ const levelOptions: { key: HazardLevel; name: string; desc: string }[] = [
 ];
 
 const HazardPage: React.FC = () => {
-  const { hazards, addHazard, facilities } = useTaskStore();
+  const { hazards, addHazard, facilities, addWorkOrder, updateHazardStatus } = useTaskStore();
   const { user, isOnline, addOfflineData } = useAppStore();
   const [activeTab, setActiveTab] = useState('new');
   const [levelFilter, setLevelFilter] = useState<string>('all');
@@ -159,7 +159,51 @@ const HazardPage: React.FC = () => {
         cancelText: '暂不生成',
         success: (res) => {
           if (res.confirm) {
-            Taro.showToast({ title: '工单已自动生成', icon: 'success' });
+            const orderId = `wo-auto-${Date.now()}`;
+            const newOrder = {
+              id: orderId,
+              title: newHazard.title,
+              type: 'repair' as const,
+              status: 'pending' as const,
+              priority:
+                newHazard.level === 'severe' || newHazard.level === 'major'
+                  ? 'high'
+                  : newHazard.level === 'moderate'
+                    ? 'medium'
+                    : 'low',
+              hazardId: newHazard.id,
+              facilityId: newHazard.facilityId,
+              facilityName: newHazard.facilityName || '关联设施',
+              location: newHazard.location,
+              description: newHazard.description,
+              images: newHazard.images,
+              assignee: user.id,
+              assigneeName: user.name,
+              createdBy: user.name,
+              createdAt: new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-'),
+              deadline: '今日 18:00',
+              isOverdue: false,
+              spareParts: [],
+              valveOperations: [],
+              historyLogs: [
+                {
+                  id: `log-${Date.now()}`,
+                  action: '隐患自动生成工单',
+                  operator: user.name,
+                  timestamp: new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-'),
+                  remarks: `隐患来源：${newHazard.title}`
+                }
+              ]
+            };
+            addWorkOrder(newOrder as never);
+            updateHazardStatus(newHazard.id, 'assigned');
+            const updatedHazards = hazards.map((h) =>
+              h.id === newHazard.id ? { ...h, workOrderId: orderId, status: 'assigned' as const } : h
+            );
+            Taro.showToast({ title: '工单已生成', icon: 'success' });
+            setTimeout(() => {
+              Taro.switchTab({ url: '/pages/workorder/index' });
+            }, 800);
           }
           setTitle('');
           setDesc('');

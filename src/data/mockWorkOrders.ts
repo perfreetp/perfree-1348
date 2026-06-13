@@ -19,6 +19,7 @@ export const mockWorkOrders: WorkOrder[] = [
     createdAt: '2026-06-13 09:20',
     startedAt: '2026-06-13 10:30',
     deadline: '今日 16:00',
+    isOverdue: true,
     spareParts: [
       {
         id: 'sp-001',

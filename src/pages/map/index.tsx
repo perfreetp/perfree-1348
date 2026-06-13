@@ -67,23 +67,28 @@ const MapPage: React.FC = () => {
   const handleCheckIn = () => {
     if (!activeTask || !currentPoint) return;
     console.log('[MapPage] 打卡:', activeTask.id, currentPoint.id);
+
+    const uncheckedCount = activeTask.points.filter((p) => !p.checked).length;
+    const isLastPoint = uncheckedCount === 1 && !currentPoint.checked;
+
     checkInPoint(activeTask.id, currentPoint.id);
     Taro.showToast({ title: '打卡成功', icon: 'success' });
 
-    const updatedTask = tasks.find((t) => t.id === activeTask.id);
-    if (updatedTask && updatedTask.checkedPoints + 1 >= updatedTask.totalPoints) {
+    if (isLastPoint) {
       setTimeout(() => {
         Taro.showModal({
-          title: '巡检完成',
-          content: '所有点位已打卡完成，是否结束任务？',
+          title: '🎉 巡检完成',
+          content: '所有点位已打卡完成，是否结束任务并标记为已完成？',
+          confirmText: '结束任务',
+          cancelText: '继续检查',
           success: (res) => {
             if (res.confirm) {
               updateTaskStatus(activeTask.id, 'done');
-              Taro.showToast({ title: '任务完成', icon: 'success' });
+              Taro.showToast({ title: '任务已完成', icon: 'success' });
             }
           }
         });
-      }, 500);
+      }, 600);
     }
   };
 
@@ -94,7 +99,27 @@ const MapPage: React.FC = () => {
         console.log('[MapPage] 扫码结果:', res.result);
         Taro.showToast({ title: `识别设施: ${res.result}`, icon: 'none' });
         if (activeTask && currentPoint) {
+          const uncheckedCount = activeTask.points.filter((p) => !p.checked).length;
+          const isLastPoint = uncheckedCount === 1 && !currentPoint.checked;
+
           checkInPoint(activeTask.id, currentPoint.id);
+
+          if (isLastPoint) {
+            setTimeout(() => {
+              Taro.showModal({
+                title: '🎉 巡检完成',
+                content: '所有点位已打卡完成，是否结束任务并标记为已完成？',
+                confirmText: '结束任务',
+                cancelText: '继续检查',
+                success: (res) => {
+                  if (res.confirm) {
+                    updateTaskStatus(activeTask.id, 'done');
+                    Taro.showToast({ title: '任务已完成', icon: 'success' });
+                  }
+                }
+              });
+            }, 600);
+          }
         }
       },
       fail: (err) => {

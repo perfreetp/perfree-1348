@@ -15,6 +15,9 @@ interface AppState {
   addOfflineData: (item: OfflineDataItem) => void;
   removeOfflineData: (id: string) => void;
   markAllSynced: () => void;
+  markItemSynced: (id: string) => void;
+  clearOfflineData: () => void;
+  clearSyncedData: () => void;
   updateLastSyncTime: () => void;
 }
 
@@ -81,6 +84,30 @@ export const useAppStore = create<AppState>((set, get) => ({
       offlineData: s.offlineData.map((i) => ({ ...i, synced: true })),
       pendingSyncCount: 0
     })),
+  markItemSynced: (id) =>
+    set((s) => {
+      const exists = s.offlineData.find((i) => i.id === id);
+      if (!exists || exists.synced) return {};
+      return {
+        offlineData: s.offlineData.map((i) =>
+          i.id === id ? { ...i, synced: true } : i
+        ),
+        pendingSyncCount: Math.max(0, s.pendingSyncCount - 1)
+      };
+    }),
+  clearOfflineData: () =>
+    set(() => ({
+      offlineData: [],
+      pendingSyncCount: 0
+    })),
+  clearSyncedData: () =>
+    set((s) => {
+      const pending = s.offlineData.filter((i) => !i.synced);
+      return {
+        offlineData: pending,
+        pendingSyncCount: pending.length
+      };
+    }),
   updateLastSyncTime: () => {
     const now = new Date();
     const time = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;

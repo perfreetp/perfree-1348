@@ -13,7 +13,7 @@ import type { OfflineDataItem } from '@/types';
 type TabKey = 'offline' | 'queue' | 'download';
 
 const OfflinePage: React.FC = () => {
-  const { isOnline, offlineData, addOfflineData, removeOfflineData, clearOfflineData, markAllSynced } = useAppStore();
+  const { isOnline, offlineData, addOfflineData, removeOfflineData, markAllSynced, markItemSynced, clearSyncedData } = useAppStore();
   const [activeTab, setActiveTab] = useState<TabKey>('queue');
   const [syncing, setSyncing] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -90,9 +90,7 @@ const OfflinePage: React.FC = () => {
     }
     Taro.showLoading({ title: '同步中...', mask: true });
     setTimeout(() => {
-      const list = offlineData.map(d => d.id === id ? { ...d, synced: true } : d);
-      clearOfflineData();
-      list.forEach(d => addOfflineData(d));
+      markItemSynced(id);
       Taro.hideLoading();
       Taro.showToast({ title: '同步成功', icon: 'success' });
     }, 800);
@@ -121,9 +119,7 @@ const OfflinePage: React.FC = () => {
       content: `确认清理 ${syncedCount} 条已同步记录？`,
       success: (res) => {
         if (res.confirm) {
-          const pending = offlineData.filter(d => !d.synced);
-          clearOfflineData();
-          pending.forEach(d => addOfflineData(d));
+          clearSyncedData();
           Taro.showToast({ title: '清理完成', icon: 'success' });
         }
       }

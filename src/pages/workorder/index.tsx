@@ -62,7 +62,12 @@ const WorkOrderPage: React.FC = () => {
 
   const filteredOrders = useMemo(() => {
     return workOrders.filter((o) => {
-      const sOk = statusFilter === 'all' || o.status === statusFilter;
+      let sOk = true;
+      if (statusFilter === 'overdue') {
+        sOk = o.isOverdue === true;
+      } else if (statusFilter !== 'all') {
+        sOk = o.status === statusFilter;
+      }
       const tOk = typeFilter === 'all' || o.type === typeFilter;
       return sOk && tOk;
     });
